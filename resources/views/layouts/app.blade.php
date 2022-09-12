@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- VUE.js -->
+    <script src="https://unpkg.com/vue@next"></script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,8 +17,13 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    
 </head>
 <body>
+    <pre>
+    </pre>
+    <hr>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -71,10 +78,28 @@
                 </div>
             </div>
         </nav>
-
+    {{$users = 4}}
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <button v-on:click="alterar">click</button>
+    <script>
+        var myApp = {
+            data(){
+                return {
+                    nome: "felipe"
+                }
+            },
+            methods: {
+                alterar(e){
+                    e.preventDefault();
+                    alert('mwtodo alterar');
+                }
+            }
+        }
+
+        Vue.createApp(myApp).mount('#app');
+    </script>
 </body>
 </html>

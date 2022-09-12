@@ -3,7 +3,36 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+
+    <table class="table col-md">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>e-mail</th>
+                <th>acao</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>@mdo</td>
+            <td>
+                <button class="btn-info btn" @click="alert(90)">alterar</button><button class="btn-danger btn">deletar</button>
+            </td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>@fat</td>
+            <td>
+                <button class="btn-info btn" v-on:click="alterar">alterar</button><button class="btn-danger btn">deletar</button>
+            </td>
+        </tbody>
+    </table>
+
+    <div class="col-md-8 col-lg-4 mx-2">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -70,8 +99,10 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>c
         </div>
-    </div>
+
+        
+    </div>a
 </div>
 @endsection
