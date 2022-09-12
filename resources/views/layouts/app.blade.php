@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <script>
+        var aray = null;
+        function $(elemento){
+            return document.querySelector(elemento);
+        }
+        function criar(elemento){
+            return document.createElement(elemento);
+        }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- VUE.js -->
@@ -18,7 +27,9 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
 </head>
 <body>
     <pre>
@@ -79,27 +90,66 @@
             </div>
         </nav>
     {{$users = 4}}
-        <main class="py-4">
+        <main class="py-4" id="vue-app">
             @yield('content')
         </main>
     </div>
-    <button v-on:click="alterar">click</button>
-    <script>
-        var myApp = {
-            data(){
-                return {
-                    nome: "felipe"
-                }
-            },
-            methods: {
-                alterar(e){
-                    e.preventDefault();
-                    alert('mwtodo alterar');
-                }
-            }
-        }
+            <script>
+                const myApp = {
+                    data(){
+                        return {
+                            name: "{{Auth::user()->name}}",
+                            id: "{{Auth::user()->id}}",
+                            recurso : ['amanda',43,'amanda@gmail.com'],
+                            conjunto_users: aray
+                        }
+                    },
+                    methods: {
+                        buscarUsuarios(e){
+                            e.preventDefault();
+                            alert(this.name);
+                        },
+                        percorrerTabela(){
+                            for(var i = 0; i < aray.length;i++){
+                                let tr = criar('tr');
+                                let td_id = criar('th');
+                                let td_nome = criar('td');
+                                let td_email = criar('td');
+                                let td_btn = criar('td');
+                                
+                                td_id.innerHTML = aray[i].id;
+                                td_nome.innerHTML = aray[i].name;
+                                td_email.innerHTML = aray[i].email;
 
-        Vue.createApp(myApp).mount('#app');
-    </script>
+                                tr.appendChild(td_id);
+                                tr.appendChild(td_nome);
+                                tr.appendChild(td_email);
+
+                                let btn_alterar = criar('button');
+                                let btn_delete = criar('button');
+                                btn_alterar.innerHTML = 'alterar';
+                                btn_delete.innerHTML = 'deletar';
+                                btn_alterar.setAttribute('class', 'btn-info btn');
+                                btn_delete.setAttribute('class', 'btn-danger btn');
+                                td_btn.appendChild(btn_alterar);
+                                td_btn.appendChild(btn_delete);
+                                tr.appendChild(td_btn);
+                                tabela.appendChild(tr);
+                            }
+                        }
+                    }
+                }
+                Vue.createApp(myApp).mount("#vue-app");
+
+                var tabela = $('#tabela');
+                
+                
+            </script>
+    
+    <!-- AJAX -->
+    <script src="js/ajax.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

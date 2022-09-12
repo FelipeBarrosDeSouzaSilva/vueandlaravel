@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
-    <table class="table col-md">
+    <table class="table col-md" id="mostrarUsuario">          
+            <button v-on:click="percorrerTabela">Mostrar Usurios</button>            
         <thead>
             <tr>
                 <th>id</th>
@@ -13,27 +13,33 @@
                 <th>acao</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tabela">
+          inicio @{{typeof conjunto_users}} fim
+          <!--inicio <ul v-for="conjunto_users in c">
+            <li>@{{c.id}}</li>
+          </ul> fim-->
             <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>@mdo</td>
-            <td>
-                <button class="btn-info btn" @click="alert(90)">alterar</button><button class="btn-danger btn">deletar</button>
-            </td>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>@mdo</td>
+                <td>
+                    <button class="btn-info btn" @click="alert(90)">alterar</button><button class="btn-danger btn">deletar</button>
+                </td>
             </tr>
             <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>@fat</td>
-            <td>
-                <button class="btn-info btn" v-on:click="alterar">alterar</button><button class="btn-danger btn">deletar</button>
-            </td>
+            <th scope="row">0</th>
+                <td>teste</td>
+                <td>@teste</td>
+                <td>
+                    <button class="btn-info btn" @click="alert(90)">alterar</button><button class="btn-danger btn">deletar</button>
+                </td>
+            </tr>
+
         </tbody>
     </table>
 
     <div class="col-md-8 col-lg-4 mx-2">
-            <div class="card">
+            <div class="card" id="form">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
